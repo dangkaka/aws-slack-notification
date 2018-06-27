@@ -15,3 +15,10 @@ Trigger an alarm to invoke a Lambda function written in Go that calls the Slack 
     terraform init
     terraform apply
     ```
+
+## Test
+
+Can use AWS cli to fake an alarm
+```
+aws cloudwatch set-alarm-state --alarm-name example-cpu-high --state-value ALARM --state-reason "Testing new alarm"
+```
