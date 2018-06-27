@@ -1,0 +1,1 @@
+aws_profile = "money"slack_webhook = "https://hooks.slack.com/services/xxx"
