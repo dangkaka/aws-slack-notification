@@ -1,4 +1,5 @@
 .idea
 *.zip
-.terraform
-*.tfstate
+**/*.terraform/
+**/*.tfstate
+**/*.tfstate.backup
