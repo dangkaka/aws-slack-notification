@@ -79,14 +79,8 @@ resource "aws_iam_role_policy" "lambda" {
 EOF
 }
 
-data "archive_file" "notify_slack" {
-  type        = "zip"
-  source_file = "${path.module}/../main.py"
-  output_path = "${path.module}/lambda/notify_slack.zip"
-}
-
 resource "aws_lambda_function" "slack" {
-  filename         = "${data.archive_file.notify_slack.output_path}"
+  filename         = "${path.module}/../deployment.zip"
   function_name    = "ExampleNotifyCloudWatchAlarmsOnSlack"
   description      = "Slack notifier from CloudWatch"
   role             = "${aws_iam_role.lambda.arn}"

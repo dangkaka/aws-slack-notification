@@ -48,12 +48,16 @@ func handler(request Request) error {
 	var snsMessage SNSMessage
 	err := json.Unmarshal([]byte(request.Records[0].SNS.SNSMessage), &snsMessage)
 	if err != nil {
-		return err
+		log.Println("Unmarshal error: ", err)
 	}
 
 	log.Printf("New alarm: %s - Reason: %s", snsMessage.AlarmName, snsMessage.NewStateReason)
 	slackMessage := buildSlackMessage(snsMessage)
-	postToSlack(slackMessage)
+	err = postToSlack(slackMessage)
+	if err != nil {
+		log.Println("PostToSlack error: ", err)
+		return err
+	}
 	log.Println("Notification has been sent")
 	return nil
 }
