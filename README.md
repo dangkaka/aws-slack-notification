@@ -10,8 +10,15 @@ Trigger an alarm to invoke a Lambda function written in Go that calls the Slack 
     ./build.sh
     ```
 3. Deploy the function to Lambda:
+Using [terraform](https://www.terraform.io/) in `terraform-example`
+* Edit `terraform.tfvars` with your corresponding values
     ```
-    cd terraform-example
+    aws_profile = "money"
+    slack_webhook = "https://hooks.slack.com/services/TOKEN"
+    ```
+    * `aws_profile` is account in `~/.aws/credentials` 
+* Apply
+    ```
     terraform init
     terraform apply
     ```
