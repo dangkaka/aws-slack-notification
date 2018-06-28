@@ -21,6 +21,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu-high" {
   dimensions {
     DBInstanceIdentifier = "${aws_instance.example.id}"
   }
+
   alarm_description = "Triggers when the EC2 uses more than 80% CPU"
   alarm_actions     = ["${aws_sns_topic.sns-alarms.arn}"]
 }
@@ -80,16 +81,16 @@ EOF
 }
 
 resource "aws_lambda_function" "slack" {
-  filename         = "${path.module}/../deployment.zip"
-  function_name    = "ExampleNotifyCloudWatchAlarmsOnSlack"
-  description      = "Slack notifier from CloudWatch"
-  role             = "${aws_iam_role.lambda.arn}"
-  handler          = "main"
-  runtime          = "go1.x"
+  filename      = "${path.module}/../deployment.zip"
+  function_name = "ExampleNotifyCloudWatchAlarmsOnSlack"
+  description   = "Slack notifier from CloudWatch"
+  role          = "${aws_iam_role.lambda.arn}"
+  handler       = "main"
+  runtime       = "go1.x"
 
   environment {
     variables = {
-      SLACK_WEBHOOK    = "${var.slack_webhook}"
+      SLACK_WEBHOOK = "${var.slack_webhook}"
     }
   }
 }
