@@ -29,7 +29,6 @@ type SNSMessage struct {
 }
 
 type SlackMessage struct {
-	Text        string       `json:"text"`
 	Attachments []Attachment `json:"attachments"`
 }
 
@@ -65,7 +64,6 @@ func handler(request Request) error {
 func buildSlackMessage(message SNSMessage) SlackMessage {
 	status := map[string]string{"OK": "good", "INSUFFICIENT_DATA": "warning", "ALARM": "danger"}
 	return SlackMessage{
-		Text: fmt.Sprintf("*%s*", message.AlarmName),
 		Attachments: []Attachment{
 			Attachment{
 				Color: status[message.NewStateValue],

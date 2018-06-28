@@ -29,3 +29,6 @@ Can use AWS cli to fake an alarm
 ```
 aws cloudwatch set-alarm-state --alarm-name example-cpu-high --state-value ALARM --state-reason "Testing new alarm"
 ```
+## Result
+
+![result](result.png)
