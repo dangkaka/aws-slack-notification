@@ -4,12 +4,15 @@ Trigger an alarm to invoke a Lambda function written in Go that calls the Slack 
 ## Usage
 
 1. Write Lambda function `main.go`
-2. Build binary file and zip it in `deployment.zip`
+1. Install dependencies
     ```
-    go get github.com/aws/aws-lambda-go
+     go get github.com/aws/aws-lambda-go
+    ```
+1. Build binary file and zip it in `deployment.zip`
+    ```
     ./build.sh
     ```
-3. Deploy the function to Lambda:
+1. Deploy the function to Lambda:
 Using [terraform](https://www.terraform.io/) in `terraform`
 * Edit your infrastructure (I only use 1 ec2 instance there as an example)
 * Edit `terraform.tfvars` with your corresponding values
